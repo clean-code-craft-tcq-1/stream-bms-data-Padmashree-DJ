@@ -1,0 +1,49 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+ name: Build and Run
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: install coverage tool
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcovr
+    - name: build
+      run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker *.c*
+      
+    - name: run
+      run: ./testchecker
+
+    - name: collect coverage
+      run: gcovr --gcov-exclude=".*test.*" -r . --html --html-details -o coverage.html
+
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage
+        path: ./*.html
+        retention-days: 1
