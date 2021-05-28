@@ -46,6 +46,7 @@ SuccessType readfromrand(float randarraytemp[],float randarraysoc[])
 		float RandTemp=random_number(1,40);
 		RandTemp=RAND_MAX*RandTemp;
 		randarraytemp[loop]=RandTemp;
+		
 		float RandSOC=random_number(20,80);
 		RandSOC=RAND_MAX*RandSOC;
 		randarraysoc[loop]=RandSOC;
