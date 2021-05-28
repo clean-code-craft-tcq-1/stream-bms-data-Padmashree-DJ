@@ -16,7 +16,7 @@ SuccessType OutputtoTarget(Targettype Target)
 SuccessType Read_Input_Data(InputType Source)
 {
 	SuccessType FileReadSuccess= Failure;
-	FileReadSuccess=(*ReadBatteryData[Source])(Temperature,SOC,g_arraylength);
+	FileReadSuccess=(*ReadBatteryData[Source])(Temperature,SOC);
 	return FileReadSuccess;
 }
 
