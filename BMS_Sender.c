@@ -5,6 +5,9 @@
 float Temperature[MAX_BATTERY_DATA]={};
 float SOC[MAX_BATTERY_DATA]={};
 int g_arraylength=0;
+
+SuccessType (*ReadBatteryData[])(float Temperature[],float SOC[])={readfromfile};	
+SuccessType(*Targetoutput[])(float Temperature[],float SOC[],int arraylength)={printtoconsole};
 	
 SuccessType OutputtoTarget(Targettype Target)
 {	
@@ -25,7 +28,7 @@ SuccessType readfromfile(float Temperature[],float SOC[])
 float TemperatureVal,SOCVal;
 int lengthOfFile=0;
 SuccessType Status= Failure;
-FILE * file=fopen( "test.txt" , "r");
+FILE * file=fopen( "BatteryData.txt" , "r");
 if (file) {
    for(int loop_ctr=0;fscanf(file, "%f\t\t%f\n", &TemperatureVal,&SOCVal)!=EOF;loop_ctr++)
 	{
@@ -33,7 +36,7 @@ if (file) {
 	  Temperature[loop_ctr]=TemperatureVal;
 	  SOC[loop_ctr]=SOCVal;
 	}
-   int g_arraylength= lengthOfFile;
+    g_arraylength= lengthOfFile;
 	Status= Success;
 	}
 	fclose(file);
