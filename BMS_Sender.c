@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<math.h>
+#include "BMS_Sender.h"
 
 float Temperature[MAX_BATTERY_DATA]={};
 float SOC[MAX_BATTERY_DATA]={};
