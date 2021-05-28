@@ -4,7 +4,7 @@
 #include "BMS_Sender.h"
 
 
-TEST_CASE("Case To Check the Input Data"") {
+TEST_CASE("Case To Check the Input Data") {
   InputType Source= FileInput;
   REQUIRE(Read_Input_Data(Source) == Success);
 }
