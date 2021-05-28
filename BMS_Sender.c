@@ -4,12 +4,12 @@
 
 float Temperature[MAX_BATTERY_DATA]={};
 float SOC[MAX_BATTERY_DATA]={};
-
-SuccessType OutputtoTarget(Targettype Target)
-{
-	int* arraylength;
+int* arraylength;
 	int array_a=0;
 	arraylength=&array_a;
+	
+SuccessType OutputtoTarget(Targettype Target)
+{	
 	SuccessType Status = Failure;
 	Status=(*Targetoutput[Target])(Temperature,SOC,*arraylength);
 	return Status;
