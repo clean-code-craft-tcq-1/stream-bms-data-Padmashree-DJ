@@ -11,8 +11,7 @@ TEST_CASE("Case To Check the Input Data") {
 
 TEST_CASE("Case to print to console") {
   InputType Source= FileInput;
-  SuccessType ReadSucess= Read_Input_Data(Source);
   Targettype Target= ToConsole;
   REQUIRE(Read_Input_Data(Source) == Success);
-  REQUIRE(OutputtoTarget(ToConsole) == Success);
+  REQUIRE(OutputtoTarget(Target) == Success);
 }

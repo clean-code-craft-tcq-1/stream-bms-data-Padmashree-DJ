@@ -4,24 +4,23 @@
 
 float Temperature[MAX_BATTERY_DATA]={};
 float SOC[MAX_BATTERY_DATA]={};
-int* arraylength;
-	int array_a=0;
-	arraylength=&array_a;
+int g_arraylength=0;
 	
 SuccessType OutputtoTarget(Targettype Target)
 {	
+
 	SuccessType Status = Failure;
-	Status=(*Targetoutput[Target])(Temperature,SOC,*arraylength);
+	Status=(*Targetoutput[Target])(Temperature,SOC,g_arraylength);
 	return Status;
 }
 SuccessType Read_Input_Data(InputType Source)
 {
 	SuccessType FileReadSuccess= Failure;
-	FileReadSuccess=(*ReadBatteryData[Source])(Temperature,SOC,arraylength);
+	FileReadSuccess=(*ReadBatteryData[Source])(Temperature,SOC,g_arraylength);
 	return FileReadSuccess;
 }
 
-SuccessType readfromfile(float Temperature[],float SOC[],int* arraylength)
+SuccessType readfromfile(float Temperature[],float SOC[])
 {
 float TemperatureVal,SOCVal;
 int lengthOfFile=0;
@@ -34,8 +33,7 @@ if (file) {
 	  Temperature[loop_ctr]=TemperatureVal;
 	  SOC[loop_ctr]=SOCVal;
 	}
-   *arraylength=lengthOfFile;
-   
+   int g_arraylength= lengthOfFile;
 	Status= Success;
 	}
 	fclose(file);
@@ -48,9 +46,7 @@ SuccessType printtoconsole(float Temperature[],float SOC[],int arraylength)
 
 for(int loop=0;loop<arraylength;loop++)
 {
-
-printf("Temp value is %f and SOC value is %f\n",Temperature[loop],SOC[loop]);
-
+	printf("Temp value is %f and SOC value is %f\n",Temperature[loop],SOC[loop]);
 }
 return Success;
 }
