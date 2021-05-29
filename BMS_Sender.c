@@ -8,22 +8,22 @@ float Temperature[MAX_BATTERY_DATA]={};
 float SOC[MAX_BATTERY_DATA]={};
 int g_arraylength=0;
 
-SuccessType (*ReadBatteryData[])(float Temperature[],float SOC[])={readfromfile,readfromrand};	
-SuccessType(*Targetoutput[])(float Temperature[],float SOC[],int arraylength)={printtoconsole};
+ResultType (*ReadBatteryData[])(float Temperature[],float SOC[])={readfromfile,readfromrand};	
+ResultType(*Targetoutput[])(float Temperature[],float SOC[],int arraylength)={printtoconsole};
 	
 
-SuccessType Read_Input_Data(InputType Source)
+ResultType Read_Input_Data(InputType Source)
 {
-	SuccessType FileReadSuccess= Failure;
+	ResultType FileReadSuccess= Failure;
 	FileReadSuccess=(*ReadBatteryData[Source])(Temperature,SOC);
 	return FileReadSuccess;
 }
 
-SuccessType readfromfile(float Temperature[],float SOC[])
+ResultType readfromfile(float Temperature[],float SOC[])
 {
 float TemperatureVal,SOCVal;
 int lengthOfFile=0;
-SuccessType Status= Failure;
+ResultType Status= Failure;
 FILE * file=fopen( "BatteryData.txt" , "r");
 if (file) {
    for(int loop_ctr=0;fscanf(file, "%f\t\t%f\n", &TemperatureVal,&SOCVal)!=EOF;loop_ctr++)
@@ -39,7 +39,7 @@ if (file) {
 	return Status;
 }
 
-SuccessType readfromrand(float randarraytemp[],float randarraysoc[])
+ResultType readfromrand(float randarraytemp[],float randarraysoc[])
 {
 	for(int loop=0;loop<21;loop++)
 	{
@@ -72,15 +72,15 @@ int random_number(int min_num, int max_num)
     return result;
 }
 
-SuccessType OutputtoTarget(Targettype Target)
+ResultType OutputtoTarget(Targettype Target)
 {	
 
-	SuccessType Status = Failure;
+	ResultType Status = Failure;
 	Status=(*Targetoutput[Target])(Temperature,SOC,g_arraylength);
 	return Status;
 }
 
-SuccessType printtoconsole(float Temperature[],float SOC[],int arraylength)
+ResultType printtoconsole(float Temperature[],float SOC[],int arraylength)
 {
 
 for(int loop=0;loop<arraylength;loop++)

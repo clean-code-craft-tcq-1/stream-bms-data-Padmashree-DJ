@@ -10,7 +10,7 @@ typedef enum
 {
 	Failure,
 	Success
-}SuccessType;
+ResultType}ResultType;
 
 typedef enum{
 	ToConsole
@@ -23,12 +23,12 @@ typedef enum{
 #define MAX_BATTERY_DATA 40
 #define RAND_MAX   1.0456
 
-SuccessType readfromfile(float Temperature[],float SOC[]);
-SuccessType printtoconsole(float Temperature[],float SOC[],int arraylength);
-SuccessType Read_Input_Data(InputType Source);
-SuccessType OutputtoTarget(Targettype Target);
+ResultType readfromfile(float Temperature[],float SOC[]);
+ResultType printtoconsole(float Temperature[],float SOC[],int arraylength);
+ResultType Read_Input_Data(InputType Source);
+ResultType OutputtoTarget(Targettype Target);
 int random_number(int min_num, int max_num);
-SuccessType readfromrand(float randarraytemp[],float randarraysoc[]);
+ResultType readfromrand(float randarraytemp[],float randarraysoc[]);
 extern float Temperature[MAX_BATTERY_DATA];
 extern float SOC[MAX_BATTERY_DATA];
 
