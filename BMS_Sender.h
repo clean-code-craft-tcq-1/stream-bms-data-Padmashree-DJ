@@ -10,7 +10,7 @@ typedef enum
 {
 	Failure,
 	Success
-ResultType}ResultType;
+}ResultType;
 
 typedef enum{
 	ToConsole
