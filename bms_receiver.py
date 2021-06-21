@@ -4,6 +4,7 @@ def recevie_bms_details():
     final_bms_data = []
     while(True):
         bms_details = input()
+        print(bms_details)
         bms_details = bms_utility.format_bms_data(bms_details)
         final_bms_data.append(bms_details)
         if len(final_bms_data) >= 5:
