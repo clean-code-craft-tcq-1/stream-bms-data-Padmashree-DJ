@@ -7,11 +7,12 @@ def recevie_bms_details():
         if bms_details == '':
             break
         bms_details = bms_utility.format_bms_data(bms_details)
-        final_bms_data.append(bms_details)
-        if len(final_bms_data) >= 5:
-            final_display_list = bms_utility.calculate_bms_statistics(final_bms_data)
-            display_bms_statistics(final_display_list)
-        time.sleep(1 / 3)
+        print(bms_details)
+#         final_bms_data.append(bms_details)
+#         if len(final_bms_data) >= 5:
+#             final_display_list = bms_utility.calculate_bms_statistics(final_bms_data)
+#             display_bms_statistics(final_display_list)
+#         time.sleep(1 / 3)
 
 
 def display_bms_statistics(bms_data):
