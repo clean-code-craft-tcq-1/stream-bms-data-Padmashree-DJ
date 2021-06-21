@@ -9,7 +9,6 @@ def recevie_bms_details():
         final_display_list = bms_utility.calculate_bms_statistics(final_bms_data)
         display_bms_statistics(final_display_list)
         time.sleep(1 / 3)
-        print(len(final_bms_data))
         if len(final_bms_data) >= 40:
             break
 
