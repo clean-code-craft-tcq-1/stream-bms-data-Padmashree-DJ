@@ -2,7 +2,8 @@ def calculate_bms_statistics(bms_data):
     temperature_values = []
     soc_values = []
     final_display_list = {}
-
+    if len(bms_data) < 5:
+        return False
     for i in range(-5, 0, 1):
         temperature_values.append(float(bms_data[i][0][1]))
         soc_values.append(float(bms_data[i][1][1]))
